@@ -1,0 +1,5 @@
+name: 'backstop'
+type: module
+description: 'Auto generate backstop js test plans from your drupal sites configuration and content.'
+core: 8.x
+package: 'Custom'

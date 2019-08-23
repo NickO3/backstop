@@ -1,0 +1,7 @@
+services:
+  logger.channel.backstop:
+    parent: logger.channel_base
+    arguments: ['backstop']
+  backstop.generator:
+    class: Drupal\backstop\BackstopGenerator
+    arguments: ['@entity.manager', '@config.manager', '@config.factory', '@entity.query', '@database', '@entity_type.manager', '@menu.link_tree']

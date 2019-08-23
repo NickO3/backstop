@@ -1,0 +1,8 @@
+
+# Backstop scenario menu items definition
+entity.backstop_scenario.collection:
+  title: 'Backstop scenario'
+  route_name: entity.backstop_scenario.collection
+  description: 'List Backstop scenario (bundles)'
+  parent: system.admin_config_development
+  weight: 99

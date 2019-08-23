@@ -1,0 +1,17 @@
+backstop.config:
+  path: '/admin/config/development/backstop/backstop_scenario/config'
+  defaults:
+    _form: '\Drupal\backstop\Form\BackstopConfigForm'
+    _title: 'BackstopConfigForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+entity.backstop_scenario.canonical:
+  path: 'backstop/{backstop_scenario}'
+  defaults:
+    _controller: '\Drupal\backstop\Controller\BackstopController::jsonScenario'
+    _title: 'generateJson'
+  requirements:
+    _permission: 'access content'

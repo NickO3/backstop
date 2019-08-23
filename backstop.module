@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains backstop.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function backstop_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the backstop module.
+    case 'help.page.backstop':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Auto generate backstop js test plans from your drupal sites configuration and content.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
