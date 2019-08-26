@@ -210,6 +210,12 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
 
     $test_url = $this->getTestUrl();
     $reference_url = $this->getReferenceUrl();
+    if (\Drupal::request()->query->get('testUrl')) {
+      $test_url = \Drupal::request()->query->get('testUrl');
+    }
+    if (\Drupal::request()->query->get('referenceUrl')) {
+      $test_url = \Drupal::request()->query->get('referenceUrl');
+    }
 
     $urls = [];
 
@@ -232,7 +238,7 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
     $default_scenario = (array) $json->scenarios[0];
 
     $json->id = $this->id;
-    foreach ($urls as $title => $url) {
+    foreach ($urls as $url) {
       $items[] = array_merge($default_scenario, [
         'label' => $url,
         'url' => $test_url . $url,
@@ -248,7 +254,7 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
       "ci_report",
     ];
     foreach ($paths as $path) {
-      $json->paths->$path = "backstop_data/" . $id . "/" . $path;
+      $json->paths->$path = "backstop_data/" . $this->id() . "/" . $path;
     }
 
     return $json;
