@@ -192,10 +192,13 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
     $sources = $this->getSources();
     foreach ($sources['node'] as $key => $value) {
 
-      if ($value['enabled']) {
+      if ($value['enabled'] == 1) {
+
         $ret[$key] = $value['limit'];
+
       }
     }
+
     return $ret;
   }
 
@@ -218,7 +221,9 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
     }
 
     foreach ($this->getScenarioNodeTypes() as $node_type => $limit) {
+
       $new_urls = $this->generator->getNodeList($node_type, $limit);
+
       if (count($new_urls) > 0) {
         $urls = array_merge($urls, $new_urls);
       }

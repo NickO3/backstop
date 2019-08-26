@@ -156,12 +156,12 @@ class BackstopGenerator {
       if ($check) {
         $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
         $url_string = $url->toString();
-        if (strpos($url_string, '/node/') !== 0) {
-          $urls[$url_string] = $url_string;
-          if ($node->bundle() == 'resource') {
-            $urls[$url_string . '?form=success'] = $url_string . '?form=success';
-          }
+
+        $urls[$url_string] = $url_string;
+        if ($node->bundle() == 'resource') {
+          $urls[$url_string . '?form=success'] = $url_string . '?form=success';
         }
+
       }
     }
     return $urls;
