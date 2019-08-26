@@ -1,0 +1,25 @@
+
+
+# NPM #
+#######
+backstopjs/node_modules
+backstopjs/backstop_data/*
+
+
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+
+Thumbs.db
+._*
+
+# Vim generated files #
+######################
+*.un~
+
+# SASS #
+##########
+.sass-cache
+.vscode*
