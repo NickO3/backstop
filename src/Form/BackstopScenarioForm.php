@@ -17,7 +17,6 @@ class BackstopScenarioForm extends EntityForm {
     $form = parent::form($form, $form_state);
     $generator = \Drupal::service('backstop.generator');
     $backstop_scenario = $this->entity;
-
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),

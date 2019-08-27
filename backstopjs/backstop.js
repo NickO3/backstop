@@ -16,7 +16,6 @@ var jsonObject = request({ url: args.url + '/backstop/' + scenarioName, qs: quer
     if( "" !== commandToRun ) {
         backstop(commandToRun, { config: JSON.parse(body)});
     }
-    backstop("openReport", { config: JSON.parse(body)});
 });
 
 

@@ -3,6 +3,8 @@
 namespace Drupal\backstop\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Defines the Backstop scenario entity.
@@ -64,6 +66,11 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
    */
   protected $label;
 
+  /**
+   * The Backstop scenario label.
+   *
+   * @var string
+   */
   protected $sources;
 
   /**
@@ -73,6 +80,29 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
 
     return $this->getThirdPartySetting('backstop', 'sources', $this->getDefaultSources());
 
+  }
+
+  /**
+   *
+   */
+  public function getTestLink() {
+    return Link::fromTextAndUrl('Generate Test', $this->getServerUrl(['command' => 'test']))->toString();
+  }
+
+  /**
+   *
+   */
+  public function getReferenceLink() {
+    return Link::fromTextAndUrl('Generate Refernce', $this->getServerUrl(['command' => 'reference']))->toString();
+  }
+
+  /**
+   *
+   */
+  public function getServerUrl($options = []) {
+    $options['jsonUrl'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'];
+    $options['scenario'] = $this->id();
+    return Url::fromUri($this->config->get('server_url'), ['absolute' => TRUE, 'query' => $options]);
   }
 
   /**
