@@ -106,6 +106,13 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
   }
 
   /**
+   *
+   */
+  public function siteId() {
+    return $this->config->get('siteid');
+  }
+
+  /**
    * Get default sources.
    */
   public function getDefaultSources() {
@@ -284,7 +291,7 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
       "ci_report",
     ];
     foreach ($paths as $path) {
-      $json->paths->$path = "backstop_data/" . $this->id() . "/" . $path;
+      $json->paths->$path = "backstop_data/" . '/' . $this->siteId() . '/' . $this->id() . "/" . $path;
     }
 
     return $json;

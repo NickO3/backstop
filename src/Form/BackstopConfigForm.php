@@ -27,35 +27,6 @@ class BackstopConfigForm extends ConfigFormBase {
   }
 
   /**
-   * Implements menu_trail_by_path_get_active_link_alter().
-   */
-  public function vertexinc_other_menu_trail_by_path_get_active_link_alter(&$menu_link) {
-    // Check if a menu link is active.
-    if ($menu_link) {
-      // Get route Node, if available.
-      $node = \Drupal::routeMatch()->getParameter('node');
-      if ($node) {
-        print 'test';
-        $id = FALSE;
-        // Give priority to the default menu.
-        $menu_name = 'primary';
-        $path = \Drupal::service('path.current')->getPath();
-        $query = \Drupal::database()->select('menu_link_content')
-          ->condition('link.uri', 'entity:node/' . $node->id())
-          ->condition('menu_name', $menu_name)
-          ->sort('id', 'ASC')
-          ->range(0, 1);
-        $result = $query->execute();
-        $id = (!empty($result)) ? reset($result) : FALSE;
-        dpm($id);
-        if ($id) {
-          $menu_link = MenuLinkContent::load($id);
-        }
-      }
-    }
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
@@ -73,9 +44,15 @@ class BackstopConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('test_url'),
       '#description' => 'The site you want to test. Typically the dev site.',
     ];
+    $form['config']['remote_server_url'] = [
+      '#type' => 'textfield',
+      '#title' => 'Remote backstop server url',
+      '#default_value' => $config->get('remote_server_url'),
+      '#description' => 'From <pathtomodule>/backstop run "npm install && node server.js" to launch a local backstop server',
+    ];
     $form['config']['server_url'] = [
       '#type' => 'textfield',
-      '#title' => 'Backstop server url',
+      '#title' => 'Local backstop server url',
       '#default_value' => $config->get('server_url'),
       '#description' => 'From <pathtomodule>/backstop run "npm install && node server.js" to launch a local backstop server',
     ];
