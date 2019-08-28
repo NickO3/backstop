@@ -2,8 +2,8 @@
 
 # NPM #
 #######
-nodejs/node_modules
-nodejs/backstop_data/*
+node_modules/
+backstop_data/*
 
 
 

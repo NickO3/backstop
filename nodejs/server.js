@@ -12,6 +12,7 @@ app.use(express.static('backstop_data'));
 
 // Route that receives a POST request to /sms
 app.get('/', function (req, res) {
+
   let response = backstop.runner({
     'jsonUrl': req.query.jsonUrl,
     'command': req.query.command,
@@ -20,7 +21,17 @@ app.get('/', function (req, res) {
   res.set('Content-Type', 'text/plain')
   res.send('Patience... robots are doing work. ')
 });
+// Route that receives a POST request to /sms
+app.post('/', function (req, res) {
 
+  let response = backstop.runner({
+    'json': req.query.json,
+    'command': req.query.command,
+    'scenario': req.query.scenario
+  });
+  res.set('Content-Type', 'text/plain')
+  res.send('Patience... robots are doing work. ')
+});
 // Like an idiot would set on their luggage
 app.listen(3000, function (err) {
   if (err) {

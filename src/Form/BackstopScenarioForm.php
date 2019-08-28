@@ -17,6 +17,7 @@ class BackstopScenarioForm extends EntityForm {
     $form = parent::form($form, $form_state);
     $generator = \Drupal::service('backstop.generator');
     $backstop_scenario = $this->entity;
+    $backstop_scenario->sendRemoteCommand('test');
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),

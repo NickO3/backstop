@@ -290,4 +290,19 @@ class BackstopScenario extends ConfigEntityBase implements BackstopScenarioInter
     return $json;
   }
 
+  /**
+   *
+   */
+  public function sendRemoteCommand($command) {
+    $uri = $this->config->get('server_url') . '/run/' . $command;
+
+    $response = \Drupal::httpClient()->post(
+      $uri, [
+        'headers' => ['Content-Type' => "application/json"],
+        'body' => json_encode($this->generateJson()),
+      ]);
+
+    return $response;
+  }
+
 }
