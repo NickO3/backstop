@@ -2,9 +2,13 @@
   "name": "backstopjs-drupal",
   "version": "1.0.0",
   "description": "A commandline utility and node server to assist in creating drupal backstop tests",
-  "main": "backstop.js",
+  "main": "server.js",
+  "start": "node server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "10.3.0"
   },
   "keywords": [
     "backstopjs",
@@ -12,15 +16,13 @@
   ],
   "author": "Nick Lewis",
   "license": "MIT",
-  "devDependencies": {
-    "lodash": "^4.17.15",
-    "yargs": "^14.0.0"
-  },
   "dependencies": {
     "backstopjs": "^4.1.12",
     "body-parser": "^1.19.0",
     "commander": "^3.0.0",
     "express": "^4.17.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "lodash": "^4.17.15",
+    "yargs": "^14.0.0"
   }
 }
